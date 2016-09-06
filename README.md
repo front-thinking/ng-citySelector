@@ -2,6 +2,7 @@ city selector based on AngularJS
 ====
 
 ng-citySelector 是一个基于AngularJS的城市选择器组件，支持字母拼音查询和汉字查询，支持缓存历史搜索记录，支持快速定位类别。
+线上DEMO：![QRCode](https://github.com/front-thinking/ng-citySelector/blob/master/imgs/QRcode.png)
 
 ## Usage
 加入文件引用
