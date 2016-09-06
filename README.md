@@ -59,11 +59,11 @@ app.controller('myCtrl', function($scope){
 ```
 Ð§¹ûÍ¼£º
 Í¼1
-![Í¼1](http://git.oa.com/jiangweixu/ng-citySelector/blob/master/imgs/1.png)
+![Í¼1](https://github.com/front-thinking/ng-citySelector/blob/master/imgs/1.png)
 Í¼2
-![Í¼2](http://git.oa.com/jiangweixu/ng-citySelector/blob/master/imgs/2.png)
+![Í¼2](https://github.com/front-thinking/ng-citySelector/blob/master/imgs/2.png)
 Í¼3
-![Í¼3](http://git.oa.com/jiangweixu/ng-citySelector/blob/master/imgs/3.png)
+![Í¼3](https://github.com/front-thinking/ng-citySelector/blob/master/imgs/3.png)
 
 ²Î¿¼example
 ÏßÉÏ[Demo](https://front-thinking.github.io/projects/ng-citySelector/)
