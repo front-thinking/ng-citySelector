@@ -6,7 +6,7 @@
                 <i class="icon-img icon-img-search02"></i>
                 <span class="txt">搜索</span>
             </div>
-            <input class="country-search-ipt" type="text" ng-model="search" ng-keypress="addHis($event)">
+            <input class="country-search-ipt" type="text" ng-model="search" id="search">
         </div>
         <!-- E 搜索 -->
         <!-- S 最近搜索 -->
@@ -31,10 +31,12 @@
             </div>
 
             <ul class="anchor-list">
-                <li ng-repeat="h in csData" ng-click="go(h[0].py[0])">{{h[0].py[0] | uppercase}}</li>
+                <li ng-repeat="h in csData" ng-touchmove="touchMoveFn($event)" ng-touchstart="touchStartFn($event)" ng-touchend="touchEndFn($event)">
+                    <a href="javascript:;">{{h[0].py[0] | uppercase}}</a>
+                </li>
             </ul>
         </div>
         <!-- E 选择城市 -->
     </div>
-    <div class="item-tip" ng-show="isShowTip"></div>
+    <div class="item-tip" ng-show="isShowTip">A</div>
 </div>

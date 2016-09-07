@@ -245,6 +245,13 @@ ul, ol {
     line-height: .16rem;
     background: #fff;
 }
+.cityselector ul li a {
+    text-decoration: none
+}
+.cityselector .anchor-list .active {
+    background: rgba(0,0,0,.2);
+    color: white;
+}
 .cityselector .item-tip {
     position: fixed;
     z-index: 99999;
