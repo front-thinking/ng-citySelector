@@ -16,26 +16,26 @@
 
 
     // 将数据转换为分组字母顺序地址信息
-    function process(data) {
+    function process(data){
 
-        var addressMap = {};
+        var alph = {}, sortedData = newArray = [];
 
-        data.map(function(v) {
-            var alph = v.py[0].toLowerCase();
-            if(!!addressMap[alph]){
-                addressMap[alph].push(v);
-            } else {
-                addressMap[alph] = [v];
+        // 对原始数组按字母排序
+        var sortedData = data.sort(function(a,b){
+            return a.py.charCodeAt(0) - b.py.charCodeAt(0);
+        });
+
+        // 将一维数组转换为二维字母分组的数组
+        sortedData.map(function(item){
+            var l = newArray.length;
+            if(alph[item.py[0]]){
+                newArray[l-1].push(item);
+            }else {
+                alph[item.py[0]] = true;
+                newArray[l] = [item];
             }
         });
-        // 将contactMap转换成二维数组并按字母排序。
-        if(Object.keys(addressMap).length !== 0){// 判断对象不为空
-            // 将对象转换为二维数组并排序
-            var addressGroupArray = Object.keys(addressMap).map(function (key) {return addressMap[key]}).sort(function (a,b) {
-                return a[0]['py'].charCodeAt(0) - b[0]['py'].charCodeAt(0);
-            });
-        }
-        return addressGroupArray;
+        return newArray;
     }
 
     // 获取数据,暂时不支持缓存
