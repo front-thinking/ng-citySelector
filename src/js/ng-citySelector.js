@@ -22,16 +22,16 @@
 
         // 对原始数组按字母排序
         var sortedData = data.sort(function(a,b){
-            return a.py.charCodeAt(0) - b.py.charCodeAt(0);
+            return a.pinyin.charCodeAt(0) - b.pinyin.charCodeAt(0);
         });
 
         // 将一维数组转换为二维字母分组的数组
         sortedData.map(function(item){
             var l = newArray.length;
-            if(alph[item.py[0]]){
+            if(alph[item.pinyin[0]]){
                 newArray[l-1].push(item);
             }else {
-                alph[item.py[0]] = true;
+                alph[item.pinyin[0]] = true;
                 newArray[l] = [item];
             }
         });
@@ -111,16 +111,16 @@
                                     <!-- S 选择城市 -->\
                                 <div class="cityselector">\
                                 <div class="city-wrap">\
-                                <p class="city-title" ng-repeat-start="i in csData | filter: search" ng-attr-id="{{\'group-\' + i[0][\'py\'][0]}}">{{i[0].py[0] | uppercase}}</p>\
+                                <p class="city-title" ng-repeat-start="i in csData | filter: search" ng-attr-id="{{\'group-\' + i[0][\'pinyin\'][0]}}">{{i[0].pinyin[0] | uppercase}}</p>\
                         <ul class="city-list" ng-repeat-end>\
                         <li class="city-list-item" ng-repeat="j in i | filter: search" ng-click="selectItem(j)">\
-                            <span ng-bind="j.name"></span>\
+                            <span ng-bind="j.ch"></span>\
                             </li>\
                             </ul>\
                             </div>\
                             <ul class="anchor-list">\
                             <li ng-repeat="h in csData" ng-touchmove="touchMoveFn($event)" ng-touchstart="touchStartFn($event)" ng-touchend="touchEndFn($event)">\
-                            <a href="javascript:;">{{h[0].py[0] | uppercase}}</a>\
+                            {{h[0].pinyin[0] | uppercase}}\
                         </li>\
                         </ul>\
                         </div>\
@@ -156,7 +156,7 @@
 
                     // 如果当前集合中有该条目，直接执行传进来的方法
                     var item = data.filter(function(i){
-                        return i.name === v;
+                        return i.ch === v;
                     });
                     if(item){
                         $scope.ngCsFn(item[0]);
@@ -166,17 +166,17 @@
                 // 选择某个国家或地区
                 $scope.selectItem = function (v){
                     var serchStr = angular.element(document.getElementById('search')).val(); // 获取search中的值
-                    if(serchStr && (v.name.indexOf(serchStr) !== -1 || v.py.indexOf(serchStr) !== -1)){
-                        setHisSearch(v.name);
+                    if(serchStr && (v.ch.indexOf(serchStr) !== -1 || v.pinyin.indexOf(serchStr) !== -1)){
+                        setHisSearch(v.ch);
                     }
                     $scope.ngCsFn(v);
                 };
 
                 $scope.touchStartFn = function($evt){
-                    var tip = $evt.target.innerHTML;
+                    var tip = $evt.target.innerHTML.trim();
                     // 增加active的class
                     angular.element($evt.target).addClass('active');
-                    if(tipEle.innerHTML !== tip){
+                    if(tipEle.innerHTML.trim() !== tip){
                         $scope.isShowTip = true;
                         tipEle.innerHTML = tip;
                         scroll2Pos(tip);
@@ -187,10 +187,10 @@
                 $scope.touchMoveFn = function($evt){
                     var myLocation = $evt.changedTouches[0], cate = '',
                         current = document.elementFromPoint(myLocation.clientX, myLocation.clientY);
-                    var anchorListDom = angular.element(current).parent().parent();
+                    var anchorListDom = angular.element(current).parent();
                     if(anchorListDom.hasClass('anchor-list')){
-                        var tip = current.innerHTML;
-                        if(tipEle.innerHTML !== tip){
+                        var tip = current.innerHTML.trim();
+                        if(tipEle.innerHTML.trim() !== tip){
                             tipEle.innerHTML = tip;
                             scroll2Pos(tip);
                         }
